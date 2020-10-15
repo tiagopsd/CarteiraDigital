@@ -1,8 +1,23 @@
-version: '3.4'
-
+version: "3.4"
 services:
-  carteiradigital.api:
-    image: ${DOCKER_REGISTRY-}carteiradigitalapi
+  carteiradigital:
+    image: carteiradigitalapi:latest
+    container_name: carteiradigitalapi
+    ports:
+      - 80:80
+      - 443:443
     build:
       context: .
       dockerfile: CarteiraDigital.API/Dockerfile
+    depends_on:
+      - sqlserver
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "carteiraDigital2020"
+      MSSQL_PID: "Developer"
+ 
