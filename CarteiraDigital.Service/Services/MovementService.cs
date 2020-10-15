@@ -7,6 +7,7 @@ using CarteiraDigital.Domain.Models.Movement;
 using CarteiraDigital.Domain.Repositories;
 using CarteiraDigital.Domain.Service;
 using CarteiraDigital.Domain.Validations;
+using CarteiraDigital.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,17 +51,18 @@ namespace CarteiraDigital.Service.Services
             {
                 var account = await _sharedService.AccountValidate(filter.Cpf, filter.Password);
                 if (!account.Success)
-                    return Result<HistoryModel>.BuildError(account.Messages);
+                    return Result<HistoryModel>.BuildError(account.Messages).LoggerError();
 
                 var movements = await _movementRepository.GetAccountHistory(account.Model.Id, filter.StartDate, filter.EndDate);
                 if (movements == null || !movements.Any())
-                    return Result<HistoryModel>.BuildError("Você não possui movimentos na conta nesse período.");
+                    return Result<HistoryModel>.BuildError("Você não possui movimentos na conta nesse período.").LoggerError();
 
                 return Result<HistoryModel>.BuildSucess(BuildHistoryModel(account.Model, movements));
             }
             catch (Exception error)
             {
-                return Result<HistoryModel>.BuildError("Erro ao obter histórico da conta, favor tente novamente!", error);
+                return Result<HistoryModel>.BuildError("Erro ao obter histórico da conta, favor tente novamente!", error)
+                     .LoggerError();
             }
         }
 

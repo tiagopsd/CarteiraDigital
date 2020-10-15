@@ -100,13 +100,12 @@ namespace CarteiraDigital.Service.Validations
                     return Validate(allowedAgeBrasil);
             }
 
-            bool Validate(int year) => birthDate.Date.AddYears(year) >= DateTime.Now.Date;
+            bool Validate(int year) => !(birthDate.Date.AddYears(year) >= DateTime.Now.Date);
             int GetAge(string key, int valueDefault) => _configurationRepository.GetValueByKey<int?>(key) ?? valueDefault;
         }
 
         public IResult<UserModel> ValidateModel(UserModel model)
         {
-            model.Cpf = model.Cpf.InsertMaskCpf();
             var result = this.Validate(model);
             if (!result.IsValid)
             {

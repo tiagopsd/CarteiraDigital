@@ -1,0 +1,45 @@
+
+create database CarteiraDigital;
+use carteiraDigital
+
+Create table [dbo].[User]
+(
+Id bigint identity(1,1) not null,
+Name varchar(50) not null,
+Cpf varchar(14) not null,
+BirthDate datetime not null,
+Password varchar(50) not null,
+CONSTRAINT PK_User_Id Primary key (Id),
+CONSTRAINT UK_User_Cpf Unique (Cpf)
+)
+
+Create table [dbo].[Account]
+(
+Id bigint identity(1,1) not null,
+Balance decimal(12,2) not null,
+UserId bigint not null,
+CONSTRAINT PK_Account_Id Primary key (Id),
+CONSTRAINT FK_Account_UserId_User_Id Foreign Key (UserId) REFERENCES [User] (Id)
+)
+
+Create table [dbo].[Movement]
+(
+Id bigint identity(1,1) not null,
+Amount decimal(12,2) not null,
+Tax decimal(12,2) not null,
+Bonus decimal(12,2) not null,
+Balance decimal(12,2) not null,
+Type smallint not null,
+DateTime datetime not null,
+AccountId bigint not null,
+CONSTRAINT PK_Movement_Id Primary key (Id),
+CONSTRAINT FK_Movement_AccountId_Account_Id Foreign Key (AccountId) REFERENCES [Account] (id)
+)
+
+Create table [dbo].[Configuration]
+(
+[Id] int identity(1,1) not null,
+[Key] varchar(50) not null,
+[Value] varchar(50) not null,
+CONSTRAINT PK_Configuration_Id Primary key (Id),
+)

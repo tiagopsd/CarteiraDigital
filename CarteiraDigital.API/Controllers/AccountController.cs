@@ -7,12 +7,14 @@ using CarteiraDigital.Domain.Enumerators;
 using CarteiraDigital.Domain.Models;
 using CarteiraDigital.Domain.Models.Interfaces;
 using CarteiraDigital.Domain.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarteiraDigital.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;

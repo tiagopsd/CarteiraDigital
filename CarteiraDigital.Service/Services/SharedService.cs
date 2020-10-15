@@ -26,11 +26,12 @@ namespace CarteiraDigital.Service.Validations
         {
             var result = await PasswordValidate(cpf, password);
             if (!result.Success)
-                return Result<Account>.BuildError(result.Messages);
+                return Result<Account>.BuildError(result.Messages).LoggerError();
 
             var account = await _accountRepository.GetByUserId(result.Model.Id);
             if (account == null)
-                return Result<Account>.BuildError("Conta não encontrada, favor entrar em contato com suporte técnico.");
+                return Result<Account>.BuildError("Conta não encontrada, favor entrar em contato com suporte técnico.")
+                    .LoggerError();
 
             return Result<Account>.BuildSucess(account);
         }
@@ -39,9 +40,9 @@ namespace CarteiraDigital.Service.Validations
         {
             var user = await _userRepository.GetByCpf(cpf.RemoveMaskCpf());
             if (user == null)
-                return Result<User>.BuildError("Usuário não encontrado.");
+                return Result<User>.BuildError("Usuário não encontrado.").LoggerError();
             else if (user.Password != password.MD5Hash())
-                return Result<User>.BuildError("Senha inválida.");
+                return Result<User>.BuildError("Senha inválida.").LoggerError();
 
             return Result<User>.BuildSucess(user);
         }

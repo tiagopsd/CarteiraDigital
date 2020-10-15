@@ -33,7 +33,7 @@ namespace CarteiraDigital.Service.Services
             {
                 var account = await _sharedService.AccountValidate(movementModel.Cpf, movementModel.Password);
                 if (!account.Success)
-                    return Result<DepositModel>.BuildError(account.Messages);
+                    return Result<DepositModel>.BuildError(account.Messages).LoggerError();
 
                 var result = new Result<DepositModel>();
                 var exist = await _movementService.ExistDeposit(account.Model.Id);
@@ -65,13 +65,13 @@ namespace CarteiraDigital.Service.Services
             {
                 var account = await _sharedService.AccountValidate(movementModel.Cpf, movementModel.Password);
                 if (!account.Success)
-                    return Result<WithdrawModel>.BuildError(account.Messages);
+                    return Result<WithdrawModel>.BuildError(account.Messages).LoggerError();
 
                 var tax = movementModel.Amount.GetPercentage(1);
 
                 if (account.Model.Balance < movementModel.Amount + tax)
                     return Result<WithdrawModel>.BuildError($"Saldo insuficiente, " +
-                        $"seu saldo permitido para transaferência é {account.Model.Balance - tax}");
+                        $"seu saldo permitido para transaferência é {account.Model.Balance - tax}").LoggerError();
 
                 account.Model.Balance -= (movementModel.Amount + tax);
                 await _movementService.CreateMovement(movementModel.Amount, MovementType.Withdraw, account.Model,
@@ -83,7 +83,8 @@ namespace CarteiraDigital.Service.Services
             }
             catch (Exception error)
             {
-                return Result<WithdrawModel>.BuildError("Erro ao realizar saque, favor tente novamento", error);
+                return Result<WithdrawModel>.BuildError("Erro ao realizar saque, favor tente novamento", error)
+                     .LoggerError();
             }
         }
 
@@ -93,14 +94,16 @@ namespace CarteiraDigital.Service.Services
             {
                 var account = await _sharedService.AccountValidate(transferModel.Cpf, transferModel.Password);
                 if (!account.Success)
-                    return Result<TransferModel>.BuildError(account.Messages);
+                    return Result<TransferModel>.BuildError(account.Messages).LoggerError();
 
                 if (account.Model.Balance < transferModel.Amount)
-                    return Result<TransferModel>.BuildError($"Saldo insuficiente, seu saldo atual é {account.Model.Balance}");
+                    return Result<TransferModel>.BuildError($"Saldo insuficiente, seu saldo atual é {account.Model.Balance}")
+                        .LoggerError();
 
                 var destinationAccount = await _accountRepository.GetByCpf(transferModel.DestinationCpf);
                 if (destinationAccount == null)
-                    return Result<TransferModel>.BuildError("Conta do destinatário não encontrado, favor refazer a transação");
+                    return Result<TransferModel>.BuildError("Conta do destinatário não encontrado, favor refazer a transação")
+                        .LoggerError();
 
                 account.Model.Balance -= transferModel.Amount;
                 destinationAccount.Balance += transferModel.Amount;
@@ -117,7 +120,8 @@ namespace CarteiraDigital.Service.Services
             }
             catch (Exception error)
             {
-                return Result<TransferModel>.BuildError("Erro ao realizar a transferência, favor tente novamento", error);
+                return Result<TransferModel>.BuildError("Erro ao realizar a transferência, favor tente novamento", error)
+                     .LoggerError();
             }
         }
 
@@ -127,14 +131,15 @@ namespace CarteiraDigital.Service.Services
             {
                 var account = await _sharedService.AccountValidate(balanceModel.Cpf, balanceModel.Password);
                 if (!account.Success)
-                    return Result<BalanceModel>.BuildError(account.Messages);
+                    return Result<BalanceModel>.BuildError(account.Messages).LoggerError();
 
                 balanceModel.Balance = account.Model.Balance;
                 return Result<BalanceModel>.BuildSucess(balanceModel, "Consulta realizada com sucesso.");
             }
             catch (Exception error)
             {
-                return Result<BalanceModel>.BuildError("Ocorreu algum erro, tente novamente.", error);
+                return Result<BalanceModel>.BuildError("Ocorreu algum erro, tente novamente.", error)
+                     .LoggerError();
             }
         }
     }

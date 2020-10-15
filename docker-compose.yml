@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  carteiradigital.api:
+    image: ${DOCKER_REGISTRY-}carteiradigitalapi
+    build:
+      context: .
+      dockerfile: CarteiraDigital.API/Dockerfile

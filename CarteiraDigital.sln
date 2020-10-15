@@ -3,13 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarteiraDigital.API", "CarteiraDigital.API\CarteiraDigital.API.csproj", "{86A88F35-CE9A-47B6-9053-FB2816EAE2EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarteiraDigital.API", "CarteiraDigital.API\CarteiraDigital.API.csproj", "{86A88F35-CE9A-47B6-9053-FB2816EAE2EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarteiraDigital.Service", "CarteiraDigital.Service\CarteiraDigital.Service.csproj", "{C1A755C2-F201-4E61-91AF-B41C87C6A171}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarteiraDigital.Service", "CarteiraDigital.Service\CarteiraDigital.Service.csproj", "{C1A755C2-F201-4E61-91AF-B41C87C6A171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarteiraDigital.Domain", "CarteiraDigital.Domain\CarteiraDigital.Domain.csproj", "{57AF1C9A-AEC7-4356-987E-64ACCF6DD14E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarteiraDigital.Domain", "CarteiraDigital.Domain\CarteiraDigital.Domain.csproj", "{57AF1C9A-AEC7-4356-987E-64ACCF6DD14E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarteiraDigital.Infrastructure", "CarteiraDigital.Infrastructure\CarteiraDigital.Infrastructure.csproj", "{75615D9D-6760-44AC-9B95-DEC35F7A50DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarteiraDigital.Infrastructure", "CarteiraDigital.Infrastructure\CarteiraDigital.Infrastructure.csproj", "{75615D9D-6760-44AC-9B95-DEC35F7A50DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarteiraDigital.Test", "CarteiraDigital.Test\CarteiraDigital.Test.csproj", "{22B4C7F3-65A7-4B25-991A-FD38EF430F61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{19523C26-40A3-4D48-8FCA-7AC3E66AE077}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3C3D7A44-3D50-4992-B155-8E35B014F6EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E325BDEC-CBD2-4B2E-A4F8-01261C01072C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F5537281-439F-49D1-BF27-E271307CB40D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +43,24 @@ Global
 		{75615D9D-6760-44AC-9B95-DEC35F7A50DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75615D9D-6760-44AC-9B95-DEC35F7A50DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75615D9D-6760-44AC-9B95-DEC35F7A50DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5537281-439F-49D1-BF27-E271307CB40D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5537281-439F-49D1-BF27-E271307CB40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5537281-439F-49D1-BF27-E271307CB40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5537281-439F-49D1-BF27-E271307CB40D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86A88F35-CE9A-47B6-9053-FB2816EAE2EA} = {19523C26-40A3-4D48-8FCA-7AC3E66AE077}
+		{C1A755C2-F201-4E61-91AF-B41C87C6A171} = {3C3D7A44-3D50-4992-B155-8E35B014F6EB}
+		{57AF1C9A-AEC7-4356-987E-64ACCF6DD14E} = {3C3D7A44-3D50-4992-B155-8E35B014F6EB}
+		{75615D9D-6760-44AC-9B95-DEC35F7A50DC} = {3C3D7A44-3D50-4992-B155-8E35B014F6EB}
+		{22B4C7F3-65A7-4B25-991A-FD38EF430F61} = {E325BDEC-CBD2-4B2E-A4F8-01261C01072C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5767F551-3E70-4398-8365-8EEF86EAB051}

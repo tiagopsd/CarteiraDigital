@@ -13,11 +13,12 @@ namespace CarteiraDigital.Infrastructure.Mappings
         {
             builder.ToTable("Movement", "dbo");
             builder.HasKey(d => d.Id);
-            builder.Property(d => d.Amount).HasColumnName("Amount").HasColumnType("decimal").IsRequired();
-            builder.Property(d => d.Tax).HasColumnName("Tax").HasColumnType("decimal").IsRequired();
-            builder.Property(d => d.Bonus).HasColumnName("Bonus").HasColumnType("decimal").IsRequired();
+            builder.Property(d => d.Amount).HasColumnName("Amount").HasColumnType("decimal(18,2)").IsRequired();
+            builder.Property(d => d.Tax).HasColumnName("Tax").HasColumnType("decimal(18,2)").IsRequired();
+            builder.Property(d => d.Bonus).HasColumnName("Bonus").HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(d => d.DateTime).HasColumnName("DateTime").HasColumnType("datetime").IsRequired();
             builder.Property(d => d.Type).HasColumnName("Type").HasColumnType("smallint").IsRequired();
+            builder.Property(d => d.Balance).HasColumnName("Balance").HasColumnType("decimal(18,2)").IsRequired();
             builder.HasOne(d => d.Account).WithMany().HasForeignKey(d => d.AccountId);
         }
     }

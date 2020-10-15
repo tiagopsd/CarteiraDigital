@@ -40,7 +40,7 @@ namespace CarteiraDigital.Service.Services
             {
                 var result = _validation.ValidateModel(userModel);
                 if (!result.Success)
-                    return result;
+                    return result.LoggerError();
 
                 userModel.Password = userModel.Password.MD5Hash();
 
@@ -58,7 +58,7 @@ namespace CarteiraDigital.Service.Services
             }
             catch (Exception error)
             {
-                return Result<UserModel>.BuildError("Error ao realizar cadastro!", error);
+                return Result<UserModel>.BuildError("Error ao realizar cadastro!", error).LoggerError();
             }
         }
 

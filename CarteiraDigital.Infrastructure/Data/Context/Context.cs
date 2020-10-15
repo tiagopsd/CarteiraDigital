@@ -2,8 +2,11 @@
 using CarteiraDigital.Infrastructure.Data.Mappings;
 using CarteiraDigital.Infrastructure.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CarteiraDigital.Infrastructure
@@ -12,8 +15,7 @@ namespace CarteiraDigital.Infrastructure
     {
         public Context(DbContextOptions<Context> options)
             : base(options)
-        {
-        }
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
