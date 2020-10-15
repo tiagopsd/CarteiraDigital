@@ -116,8 +116,10 @@ namespace CarteiraDigital.API
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IContext context, ILogger<Startup> logger)
         {
+            logger.LogError(Configuration.GetConnectionString("Default"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

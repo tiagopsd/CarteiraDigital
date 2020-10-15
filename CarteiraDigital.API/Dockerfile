@@ -14,7 +14,7 @@ COPY ["CarteiraDigital.Service/CarteiraDigital.Service.csproj", "CarteiraDigital
 RUN dotnet restore "CarteiraDigital.API/CarteiraDigital.API.csproj"
 COPY . .
 WORKDIR "/src/CarteiraDigital.API"
-RUN dotnet build "CarteiraDigital.API.csproj" -c Release -o /app/build
+#RUN dotnet build "CarteiraDigital.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "CarteiraDigital.API.csproj" -c Release -o /app/publish
