@@ -9,5 +9,6 @@ namespace CarteiraDigital.Domain.Models
         public string Cpf { get; set; }
         public string Password { get; set; }
         public decimal Amount { get; set; }
+        public decimal Tax { get; set; }
     }
 }

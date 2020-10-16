@@ -78,7 +78,9 @@ namespace CarteiraDigital.Service.Services
                 {
                     Amount = d.Amount,
                     DateTime = d.DateTime,
-                    Type = d.Type.ToString()
+                    Type = d.Type.ToString(),
+                    Bonus = d.Bonus,
+                    Tax = d.Tax 
                 }).ToList(),
                 InitialBalance = initialBalance,
                 FinalBalance = FinalBalance,

@@ -19,7 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3C3D7A44-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E325BDEC-CBD2-4B2E-A4F8-01261C01072C}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F5537281-439F-49D1-BF27-E271307CB40D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB858DB2-38E8-40DF-9CB8-EF0D3E37DCAD}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +50,6 @@ Global
 		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22B4C7F3-65A7-4B25-991A-FD38EF430F61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5537281-439F-49D1-BF27-E271307CB40D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5537281-439F-49D1-BF27-E271307CB40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5537281-439F-49D1-BF27-E271307CB40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5537281-439F-49D1-BF27-E271307CB40D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

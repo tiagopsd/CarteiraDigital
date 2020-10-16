@@ -100,7 +100,7 @@ namespace CarteiraDigital.Service.Validations
                     return Validate(allowedAgeBrasil);
             }
 
-            bool Validate(int year) => !(birthDate.Date.AddYears(year) >= DateTime.Now.Date);
+            bool Validate(int year) => DateTime.Now.Date >= birthDate.AddYears(year).Date;
             int GetAge(string key, int valueDefault) => _configurationRepository.GetValueByKey<int?>(key) ?? valueDefault;
         }
 

@@ -31,6 +31,9 @@ namespace CarteiraDigital.Service.Services
         {
             try
             {
+                if (movementModel.Amount <= 0)
+                    return Result<DepositModel>.BuildError("Favor inserir um valor válido.").LoggerError();
+
                 var account = await _sharedService.AccountValidate(movementModel.Cpf, movementModel.Password);
                 if (!account.Success)
                     return Result<DepositModel>.BuildError(account.Messages).LoggerError();
@@ -59,27 +62,28 @@ namespace CarteiraDigital.Service.Services
             }
         }
 
-        public async Task<IResult<WithdrawModel>> Withdraw(WithdrawModel movementModel)
+        public async Task<IResult<WithdrawModel>> Withdraw(WithdrawModel withdrawModel)
         {
             try
             {
-                var account = await _sharedService.AccountValidate(movementModel.Cpf, movementModel.Password);
+                var account = await _sharedService.AccountValidate(withdrawModel.Cpf, withdrawModel.Password);
                 if (!account.Success)
                     return Result<WithdrawModel>.BuildError(account.Messages).LoggerError();
 
-                var tax = movementModel.Amount.GetPercentage(1);
+                var tax = withdrawModel.Amount.GetPercentage(1);
+                withdrawModel.Tax = tax;
 
-                if (account.Model.Balance < movementModel.Amount + tax)
+                if (account.Model.Balance < withdrawModel.Amount + tax)
                     return Result<WithdrawModel>.BuildError($"Saldo insuficiente, " +
                         $"seu saldo permitido para transaferência é {account.Model.Balance - tax}").LoggerError();
 
-                account.Model.Balance -= (movementModel.Amount + tax);
-                await _movementService.CreateMovement(movementModel.Amount, MovementType.Withdraw, account.Model,
+                account.Model.Balance -= (withdrawModel.Amount + tax);
+                await _movementService.CreateMovement(withdrawModel.Amount, MovementType.Withdraw, account.Model,
                     account.Model.Balance, tax: tax);
 
                 await _accountRepository.SaveAsync();
 
-                return Result<WithdrawModel>.BuildSucess(movementModel, "Saque realizado com sucesso!");
+                return Result<WithdrawModel>.BuildSucess(withdrawModel, "Saque realizado com sucesso!");
             }
             catch (Exception error)
             {
@@ -116,7 +120,7 @@ namespace CarteiraDigital.Service.Services
 
                 await _accountRepository.SaveAsync();
 
-                return Result<TransferModel>.BuildSucess(transferModel);
+                return Result<TransferModel>.BuildSucess(transferModel, "Transferência realizada com sucesso.");
             }
             catch (Exception error)
             {

@@ -34,7 +34,7 @@ namespace CarteiraDigital.API.Token
 
             return new UserToken()
             {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Token = "Bearer " + new JwtSecurityTokenHandler().WriteToken(token),
                 Expiration = expiration
             };
         }

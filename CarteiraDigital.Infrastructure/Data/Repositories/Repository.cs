@@ -3,6 +3,7 @@ using CarteiraDigital.Domain.Entities.Interfaces;
 using CarteiraDigital.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CarteiraDigital.Infrastructure.Repositories
@@ -59,6 +60,30 @@ namespace CarteiraDigital.Infrastructure.Repositories
             try
             {
                 return await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task Delete(TEntity entity)
+        {
+            try
+            {
+                await Task.Run(() => Set.Remove(entity));
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<TEntity>> GetAll()
+        {
+            try
+            {
+               return await Set.ToListAsync();
             }
             catch
             {

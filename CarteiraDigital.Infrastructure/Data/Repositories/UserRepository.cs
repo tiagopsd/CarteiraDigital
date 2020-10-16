@@ -2,6 +2,7 @@
 using CarteiraDigital.Domain.Entities;
 using CarteiraDigital.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CarteiraDigital.Infrastructure.Repositories

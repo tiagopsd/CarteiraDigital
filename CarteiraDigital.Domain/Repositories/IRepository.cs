@@ -12,5 +12,7 @@ namespace CarteiraDigital.Domain.Repositories
         Task<int> SaveAsync();
         Task UpdateAsync(params TEntity[] entities);
         Task AddAsync(params TEntity[] entities);
+        Task Delete(TEntity entity);
+        Task<List<TEntity>> GetAll();
     }
 }

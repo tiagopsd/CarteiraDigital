@@ -72,7 +72,6 @@ namespace CarteiraDigital.API
             {
                 options.UseSqlServer(
                 Configuration.GetConnectionString("Default"));
-                //options.UseInMemoryDatabase("CarteiraDigital");
             }, ServiceLifetime.Scoped);
 
 
@@ -149,12 +148,5 @@ namespace CarteiraDigital.API
             var _context = (Context)context;
             _context.Database.Migrate();
         }
-
-        //private void AddConnectionString(DbContextOptionsBuilder dbContextOptionsBuilder)
-        //{
-        //    //dbContextOptionsBuilder.
-        //    //dbContextOptionsBuilder.UseInMemoryDatabase("CarteiraDigital");
-        //    dbContextOptionsBuilder.UseSqlServer();
-        //}
     }
 }

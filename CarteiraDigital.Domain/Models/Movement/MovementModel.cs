@@ -10,5 +10,7 @@ namespace CarteiraDigital.Domain.Models
         public decimal Amount { get; set; }
         public string Type { get; set; }
         public DateTime DateTime { get; set; }
+        public decimal Bonus { get; set; }
+        public decimal Tax { get; set; }
     }
 }
