@@ -7,7 +7,7 @@ Modelagem de software Domain Driven Design (DDD).
 Para executar a aplicação basta ter o docker instalado em sua máquina, entrar na pasta principal do projeto e executar o comando docker-compose up.
 Isso pode levar um tempo. Todas as aplicações necessárias serão iniciadas.
 
-Assim que iniciado você podera testar a API através do Swagger, basta seguir as instruções abaixo:
+Assim que iniciado você poderá testar a API através do Swagger, basta seguir as instruções abaixo:
 
 Uma Api dividida em 4 controllers.
 
