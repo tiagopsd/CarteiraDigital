@@ -17,7 +17,7 @@ Uma Api dividida em 4 controllers.
 Para obter o token de teste, basta enviar username: carteiradigital e password: carteiradigital.
 Autorize os endpoints através do swagger no canto superior direito na opção Authorize.
 
-2 - Usuario (User) 
+2 - Usuário (User) 
 
 * Cadastro de Usuario (Register)  
 Para se cadastrar basta enviar seus dados, nome completo, CPF, data de nascimento, senha e o país de origem.
@@ -29,15 +29,26 @@ País é um enumerador sendo Brasil = 0 e EUA = 1.
 
 3 - Funcionalidades da conta (Account)
 
-* Deposito (Deposit): Basta enviar seu CPF, senha cadastrados e o valor que deseja depositar.
-* Saque (Withdraw): Basta enviar seu CPF, senha e o valor que deseja sacar.
-* Transferência (Transfer): Basta enviar seu CPF, senha, valor da operação e o CPF do beneficiário.
-* Saldo (Balance): Basta enviar seu CPF e senha para obter seu saldo atual.
+* Deposito (Deposit)
+Basta enviar seu CPF, senha cadastrados e o valor que deseja depositar.
+No primeiro depósito você ganhará 10% do valor a titulo de boas vindas.
+
+* Saque (Withdraw)
+Basta enviar seu CPF, senha e o valor que deseja sacar.
+Cada saque é cobrado uma taxa de 1% do valor.
+
+* Transferência (Transfer)
+Basta enviar seu CPF, senha, valor da operação e o CPF do beneficiário.
+Funcionalidade sem custo adicional.
+
+* Saldo (Balance)
+Basta enviar seu CPF e senha para obter seu saldo atual.
 
 4 - Movimentação da conta (Movement)
 
-* Extrato de conta (History): Basta enviar seu CPF, senha, data inicial e final do período desejado. 
+* Extrato de conta (History)
+Basta enviar seu CPF, senha, data inicial e final do período desejado. 
 
 Caso você queira rodar a aplicação através do Visual Studio ou alguma outra IDE, basta ter o SQL Server instalado, 
-configurar a connectionString e o banco de dados e as tabelas serão criados automatico atrávez da Migration configurada.  
+configurar a connectionString e o banco de dados e as tabelas serão criados automaticamente atravéz da Migration configurada.  
 
